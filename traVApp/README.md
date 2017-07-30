@@ -1,5 +1,10 @@
 # TraVApp
 
+TraVApp is an Angular application that I built while I was attending DevMountain. Excited about a possible new job opportunity using Angular 2, I decided to use this app to learn Angular 2 in an application I am familiar with.
+
+
+----------------------------------------
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 
 ## Development server

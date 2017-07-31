@@ -1,0 +1,9 @@
+<div class="trip-container">
+  <h2 class="display-5">{{ trip.name }}</h2>
+  <div>Date: {{ trip.date }}</div>
+  <div>Location: {{ trip.location }}</div>
+  <div>Length: {{ trip.length }}</div>
+  <div>Amount to Save: ${{ trip.amountToSave }}</div>
+  <div>Total Saved: ${{ trip.totalSaved }}</div>
+  <div><ngb-progressbar type="success" [value]="50">50%</ngb-progressbar></div>
+</div>

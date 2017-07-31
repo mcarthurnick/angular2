@@ -1,13 +1,18 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { TripListComponent } from '../trips/trips-list.component';
 
+
+const appRoutes: Routes = [
+  { path: '', component: TripListComponent }
+];
+
 @NgModule({
   imports: [
-    RouterModule.forRoot([
-      { path: '', component: TripListComponent }
-    ])
+    RouterModule.forRoot(
+      appRoutes
+    )
   ],
   exports: [
     RouterModule

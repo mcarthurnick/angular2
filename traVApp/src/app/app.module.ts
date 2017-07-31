@@ -8,6 +8,7 @@ import { AppRoutingModule } from './shared/app.routing';
 import { TripDetailComponent } from './trips/trips-detail.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { TripService } from './trips/trips.service';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TripService } from './trips/trips.service';
     AppComponent,
     TripListComponent,
     TripDetailComponent,
-    NavBarComponent
+    NavBarComponent,
+    LoginComponent
   ],
   imports: [
     NgbModule.forRoot(),

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TripService } from './trips.service';
-import { ToastrService } from '../shared/toastr.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component ({
   selector: 'trip-list',
@@ -25,17 +23,11 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 export class TripListComponent implements OnInit {
   trips: any[]
-  constructor(
-    private tripService: TripService,
-    private toastr: ToastsManager) {
+  constructor
+    (private tripService: TripService) {
 
-  }
-
+    }
   ngOnInit() {
     this.trips = this.tripService.getTrips()
   }
-
-  private showSuccess(){
-    	this.toastr.success("Success", 'You are on right track.');
-	}
 }

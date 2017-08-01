@@ -7,11 +7,26 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
+import * as firebase from 'firebase';
+
 @Injectable()
 export class LoginService implements CanActivate {
   userLoggedIn: boolean = false;
+  loggedInUser: string;
+  authUser: any;
 
-  constructor( private router: Router ) { }
+  constructor( private router: Router ) {
+    var config = {
+      apiKey: "AIzaSyDcIQvLpurorTjSeTWPKqNnq685FhKCbns",
+      authDomain: "janiis-ang.firebaseapp.com",
+      databaseURL: "https://janiis-ang.firebaseio.com",
+      projectId: "janiis-ang",
+      storageBucket: "",
+      messagingSenderId: "940296147328"
+    };
+
+    firebase.initializeApp(config);
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;
@@ -24,4 +39,39 @@ export class LoginService implements CanActivate {
     this.router.navigate(['/login']);
     return false;
   }
+
+  register(email: string, password: string){
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .catch(function(error) {
+      alert('${error.message} Please Try Again!');
+    })
+  }
+
+  verifyUser() {
+    this.authUser = firebase.auth().currentUser;
+
+    if(this.authUser) {
+      alert('Welcome ${this.authUser.email}');
+      this.loggedInUser = this.authUser.email;
+      this.userLoggedIn = true;
+      this.router.navigate(['/trips']);
+    }
+  }
+
+  login(loginEmail:string, loginPassword: string) {
+    firebase.auth().signInWithEmailAndPassword(loginEmail, loginPassword)
+      .catch(function(error){
+        alert('${error.message} Unable to login. Try again!');
+      });
+  }
+
+  logout(){
+    this.userLoggedIn = false;
+    firebase.auth().signOut().then(function() {
+      alert('Logged Out!');
+    }, function(error){
+      alert('${error.message} Unable to logout. Try again!');
+    });
+}
+
 }

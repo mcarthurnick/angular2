@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 import {
   CanActivate,
@@ -16,16 +17,7 @@ export class LoginService implements CanActivate {
   authUser: any;
 
   constructor( private router: Router ) {
-    var config = {
-      apiKey: "AIzaSyDcIQvLpurorTjSeTWPKqNnq685FhKCbns",
-      authDomain: "janiis-ang.firebaseapp.com",
-      databaseURL: "https://janiis-ang.firebaseio.com",
-      projectId: "janiis-ang",
-      storageBucket: "",
-      messagingSenderId: "940296147328"
-    };
-
-    firebase.initializeApp(config);
+    firebase.initializeApp(environment.firebase);
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -54,7 +46,7 @@ export class LoginService implements CanActivate {
       alert('Welcome ${this.authUser.email}');
       this.loggedInUser = this.authUser.email;
       this.userLoggedIn = true;
-      this.router.navigate(['/trips']);
+      this.router.navigate(['trips']);
     }
   }
 

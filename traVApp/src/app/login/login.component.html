@@ -1,32 +1,20 @@
 <div class="container">
-<div class="row">
-  <h1 class="text-center" >Login to your Account</h1>
-</div>
-  <form>
-      <div class="col-md-6 form-group">
-        <label>Username</label>
-          <input class="form-control" type="text" placeholder="Enter Email Address" id="email" [(ngModel)]="email" name="email" required #em="ngModel" />
-          <div [hidden]="em.valid || em.pristine" class="alert callout">
-            Email is required
-          </div>
-      </div>
-      <div class="col-md-6 form-group">
-        <label>Password</label>
-          <input class="form-control"  type="password" placeholder="Enter Password" id="password1" [(ngModel)]="password1" name="password1" required #pwd1="ngModel" />
-          <div [hidden]="pwd1.valid || pwd1.pristine" class="alert callout">
-            Password required
-          </div>
-      </div>
-      <div class="col-md-6 form-group">
-        <div class="button-group">
-          <button type="button" class="btn-success btn" (click)="login()">Login</button>
-          <button type="button" class="btn btn-default" (click)="register()">Sign Up</button>
-        </div>
-      </div>
-    <div class="col-md-6 form-group">
-      <p (click)="cancel()" class="text-center simlink">
-        Back to the Main Site
-      </p>
-    </div>
-  </form>
+  <div class="row">
+    <h1 *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</h1>
   </div>
+  <div class="col-md-6" *ngIf="!(authService.user | async)">
+    <input type="text" [(ngModel)]="email" placeholder="email"><br />
+    <input type="password" [(ngModel)]="password" placeholder="password">
+  </div>
+    <button (click)="signup()" [disabled]="!email || !password">
+      Signup
+    </button>
+
+    <button (click)="login()" [disabled]="!email || !password">
+      Login
+    </button>
+
+  <button (click)="logout()" *ngIf="authService.user | async">
+    Logout
+  </button>
+</div>

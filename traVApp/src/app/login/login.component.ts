@@ -1,33 +1,29 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../shared/login.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
 
-@Component({
+@Component({ 
   selector: 'login-component',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
-
-})
+ })
 
 export class LoginComponent {
   email: string;
-  password1: string;
+  password: string;
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(public authService: AuthService) {}
 
+  signup() {
+    this.authService.signup(this.email, this.password);
+    this.email = this.password = '';
   }
 
-  login(){
-    this.loginService.login(this.email, this.password1);
-    this.loginService.verifyUser();
+  login() {
+    this.authService.login(this.email, this.password);
+    this.email = this.password = '';    
   }
 
-  signup(){
-    this.router.navigate(['/register']);
+  logout() {
+    this.authService.logout();
   }
-
-  cancel(){
-    this.router.navigate(['']);
-  }
-
 }

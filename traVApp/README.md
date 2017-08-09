@@ -2,7 +2,7 @@
 
 TraVApp is an Angular application that I built while I was attending DevMountain. Excited about a possible new job opportunity using Angular 2, I decided to use this app to learn Angular 2 in an application I am familiar with.
 
-Using AngularFire2 library for Firebase simple Email & Password Authentication. 'https://github.com/angular/angularfire2'
+Using AngularFire2 library for Firebase simple Email & Password Authentication. https://github.com/angular/angularfire2
 
 
 ----------------------------------------
